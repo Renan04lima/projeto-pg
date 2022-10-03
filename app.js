@@ -1,3 +1,6 @@
+// Autor: Kamaron Peterson (sessamekesh)
+// Link: https://github.com/sessamekesh/IndigoCS-webgl-tutorials/tree/master/Shadow%20Mapping
+
 'use strict';
 
 var Demo;
