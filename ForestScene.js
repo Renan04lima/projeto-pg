@@ -38,7 +38,7 @@ ForestScene.prototype.Load = function (cb) {
 			mesh.vertices,
 			[].concat.apply([], mesh.faces),
 			mesh.normals,
-			vec4.fromValues(0.8, 0.8, 1.0, 1.0)
+			vec4.fromValues(0.5, 0.2, 0.0, 1.0)
 		);
 		mat4.rotate(
 			me.Tree1MeshTrunk.world, me.Tree1MeshTrunk.world,
@@ -56,7 +56,7 @@ ForestScene.prototype.Load = function (cb) {
 			mesh.vertices,
 			[].concat.apply([], mesh.faces),
 			mesh.normals,
-			vec4.fromValues(0.8, 0.8, 1.0, 1.0)
+			vec4.fromValues(0.5, 1.0, 0.0, 1.0)
 		);
 		mat4.rotate(
 			me.Tree1MeshLeafs.world, me.Tree1MeshLeafs.world,
@@ -68,16 +68,60 @@ ForestScene.prototype.Load = function (cb) {
 			vec4.fromValues(0.0, 0.0, 40)
 		);
 
+		var mesh = loadResults.Models.ForestModel.meshes[2];
+		me.Tree2MeshTrunk = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 0.2, 0.0, 1.0)
+		);
+		mat4.rotate(
+			me.Tree2MeshTrunk.world, me.Tree2MeshTrunk.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, 0)
+		);
+		mat4.translate(
+			me.Tree2MeshTrunk.world, me.Tree2MeshTrunk.world,
+			vec4.fromValues(0.0, 0.0, 40)
+		);
+
+		var mesh = loadResults.Models.ForestModel.meshes[3];
+		me.Tree2MeshLeafs = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 1.0, 0.0, 1.0)
+		);
+		mat4.rotate(
+			me.Tree2MeshLeafs.world, me.Tree2MeshLeafs.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, 0)
+		);
+		mat4.translate(
+			me.Tree2MeshLeafs.world, me.Tree2MeshLeafs.world,
+			vec4.fromValues(0.0, 0.0, 40)
+		);
+
 		if (!me.Tree1MeshTrunk) {
 			cb('Failed to load tree 1 trunk mesh'); return;
 		}
 		if (!me.Tree1MeshLeafs) {
 			cb('Failed to load tree 1 leafs mesh'); return;
 		}
+		if (!me.Tree2MeshTrunk) {
+			cb('Failed to load some object mesh'); return;
+		}
+		if (!me.Tree2MeshLeafs) {
+			cb('Failed to load some object mesh'); return;
+		}
 
 		me.Meshes = [
 			me.Tree1MeshTrunk,
 			me.Tree1MeshLeafs,
+			me.Tree2MeshTrunk,
+			me.Tree2MeshLeafs,
 		];
 
 
@@ -97,6 +141,7 @@ ForestScene.prototype.Load = function (cb) {
 			mProj: me.gl.getUniformLocation(me.demoProgram, 'mProj'),
 			mView: me.gl.getUniformLocation(me.demoProgram, 'mView'),
 			mWorld: me.gl.getUniformLocation(me.demoProgram, 'mWorld'),
+			meshColor: me.gl.getUniformLocation(me.demoProgram, 'meshColor'),
 		};
 		me.demoProgram.attribs = {
 			vertPosition: me.gl.getAttribLocation(me.demoProgram, 'vertPosition'),
@@ -235,6 +280,10 @@ ForestScene.prototype._Render = function () {
 			this.demoProgram.uniforms.mWorld,
 			gl.FALSE,
 			this.Meshes[i].world
+		);
+		gl.uniform4fv(
+			this.demoProgram.uniforms.meshColor,
+			this.Meshes[i].color
 		);
 
 		// Set attributes
