@@ -376,13 +376,9 @@ ForestScene.prototype.Load = function (cb) {
 		Left: false,
 		Forward: false,
 		Back: false,
-
-		RotLeft: false,
-		RotRight: false,
 	};
 
 	me.MoveForwardSpeed = 3.5;
-	me.RotateSpeed = 1.5;
 	me.textureSize = getParameterByName('texSize') || 512;
 };
 
@@ -458,14 +454,6 @@ ForestScene.prototype._Update = function (dt) {
 
 	if (this.PressedKeys.Down && !this.PressedKeys.Up) {
 		this.camera.moveUp(-dt / 1000 * this.MoveForwardSpeed);
-	}
-
-	if (this.PressedKeys.RotRight && !this.PressedKeys.RotLeft) {
-		this.camera.rotateRight(-dt / 1000 * this.RotateSpeed);
-	}
-
-	if (this.PressedKeys.RotLeft && !this.PressedKeys.RotRight) {
-		this.camera.rotateRight(dt / 1000 * this.RotateSpeed);
 	}
 
 	this.camera.GetViewMatrix(this.viewMatrix);
@@ -562,12 +550,6 @@ ForestScene.prototype._OnKeyDown = function (e) {
 		case 'ArrowDown':
 			this.PressedKeys.Down = true;
 			break;
-		case 'ArrowRight':
-			this.PressedKeys.RotRight = true;
-			break;
-		case 'ArrowLeft':
-			this.PressedKeys.RotLeft = true;
-			break;
 	}
 };
 
@@ -590,12 +572,6 @@ ForestScene.prototype._OnKeyUp = function (e) {
 			break;
 		case 'ArrowDown':
 			this.PressedKeys.Down = false;
-			break;
-		case 'ArrowRight':
-			this.PressedKeys.RotRight = false;
-			break;
-		case 'ArrowLeft':
-			this.PressedKeys.RotLeft = false;
 			break;
 	}
 };
