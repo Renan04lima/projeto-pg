@@ -15,8 +15,10 @@ var Model = function (gl, vertices, indices, normals, color) {
 	gl.bindBuffer(gl.ARRAY_BUFFER, this.vbo);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
-	gl.bindBuffer(gl.ARRAY_BUFFER, this.nbo);
-	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.STATIC_DRAW);
+	if (normals) {
+		gl.bindBuffer(gl.ARRAY_BUFFER, this.nbo);
+		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.STATIC_DRAW);
+	}
 
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.ibo);
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
