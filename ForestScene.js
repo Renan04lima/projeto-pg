@@ -32,8 +32,9 @@ ForestScene.prototype.Load = function (cb) {
 		//
 		// Create Model objects
 		//
+
 		var mesh = loadResults.Models.ForestModel.meshes[0];
-		me.Tree1MeshTrunk = new Model(
+		me.Tree1TrunkMesh = new Model(
 			me.gl,
 			mesh.vertices,
 			[].concat.apply([], mesh.faces),
@@ -41,35 +42,35 @@ ForestScene.prototype.Load = function (cb) {
 			vec4.fromValues(0.5, 0.2, 0.0, 1.0)
 		);
 		mat4.rotate(
-			me.Tree1MeshTrunk.world, me.Tree1MeshTrunk.world,
+			me.Tree1TrunkMesh.world, me.Tree1TrunkMesh.world,
 			glMatrix.toRadian(90.0),
 			vec3.fromValues(1, 0, 0)
 		);
 		mat4.translate(
-			me.Tree1MeshTrunk.world, me.Tree1MeshTrunk.world,
-			vec4.fromValues(0.0, 0.0, 40)
+			me.Tree1TrunkMesh.world, me.Tree1TrunkMesh.world,
+			vec4.fromValues(0.0, 0.0, 15)
 		);
 
 		var mesh = loadResults.Models.ForestModel.meshes[1];
-		me.Tree1MeshLeafs = new Model(
+		me.Tree1LeafsMesh = new Model(
 			me.gl,
 			mesh.vertices,
 			[].concat.apply([], mesh.faces),
 			mesh.normals,
-			vec4.fromValues(0.5, 1.0, 0.0, 1.0)
+			vec4.fromValues(0.5, 1.0, 0.1, 1.0)
 		);
 		mat4.rotate(
-			me.Tree1MeshLeafs.world, me.Tree1MeshLeafs.world,
+			me.Tree1LeafsMesh.world, me.Tree1LeafsMesh.world,
 			glMatrix.toRadian(90.0),
 			vec3.fromValues(1, 0, 0)
 		);
 		mat4.translate(
-			me.Tree1MeshLeafs.world, me.Tree1MeshLeafs.world,
-			vec4.fromValues(0.0, 0.0, 40)
+			me.Tree1LeafsMesh.world, me.Tree1LeafsMesh.world,
+			vec4.fromValues(0.0, 0.0, 15)
 		);
 
 		var mesh = loadResults.Models.ForestModel.meshes[2];
-		me.Tree2MeshTrunk = new Model(
+		me.Tree2TrunkMesh = new Model(
 			me.gl,
 			mesh.vertices,
 			[].concat.apply([], mesh.faces),
@@ -77,51 +78,139 @@ ForestScene.prototype.Load = function (cb) {
 			vec4.fromValues(0.5, 0.2, 0.0, 1.0)
 		);
 		mat4.rotate(
-			me.Tree2MeshTrunk.world, me.Tree2MeshTrunk.world,
+			me.Tree2TrunkMesh.world, me.Tree2TrunkMesh.world,
 			glMatrix.toRadian(90.0),
 			vec3.fromValues(1, 0, 0)
 		);
 		mat4.translate(
-			me.Tree2MeshTrunk.world, me.Tree2MeshTrunk.world,
-			vec4.fromValues(0.0, 0.0, 40)
+			me.Tree2TrunkMesh.world, me.Tree2TrunkMesh.world,
+			vec4.fromValues(0.0, 0.0, 15)
 		);
 
 		var mesh = loadResults.Models.ForestModel.meshes[3];
-		me.Tree2MeshLeafs = new Model(
+		me.Tree2LeafsMesh = new Model(
 			me.gl,
 			mesh.vertices,
 			[].concat.apply([], mesh.faces),
 			mesh.normals,
-			vec4.fromValues(0.5, 1.0, 0.0, 1.0)
+			vec4.fromValues(0.5, 1.0, 0.1, 1.0)
 		);
 		mat4.rotate(
-			me.Tree2MeshLeafs.world, me.Tree2MeshLeafs.world,
+			me.Tree2LeafsMesh.world, me.Tree2LeafsMesh.world,
 			glMatrix.toRadian(90.0),
 			vec3.fromValues(1, 0, 0)
 		);
 		mat4.translate(
-			me.Tree2MeshLeafs.world, me.Tree2MeshLeafs.world,
-			vec4.fromValues(0.0, 0.0, 40)
+			me.Tree2LeafsMesh.world, me.Tree2LeafsMesh.world,
+			vec4.fromValues(0.0, 0.0, 15)
 		);
 
-		if (!me.Tree1MeshTrunk) {
+		var mesh = loadResults.Models.ForestModel.meshes[4];
+		me.Rock1Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.2, 0.2, 0.2, 1.0)
+		);
+		mat4.rotate(
+			me.Rock1Mesh.world, me.Rock1Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, 0)
+		);
+		mat4.translate(
+			me.Rock1Mesh.world, me.Rock1Mesh.world,
+			vec4.fromValues(0.0, 0.0, 10)
+		);
+
+		var mesh = loadResults.Models.ForestModel.meshes[12];
+		me.Mushroom1BottomMesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.9, 0.8, 0.7, 1.0)
+		);
+		mat4.rotate(
+			me.Mushroom1BottomMesh.world, me.Mushroom1BottomMesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, 0)
+		);
+		mat4.translate(
+			me.Mushroom1BottomMesh.world, me.Mushroom1BottomMesh.world,
+			vec4.fromValues(5.8, 1.2, 6.6)
+		);
+
+		var mesh = loadResults.Models.ForestModel.meshes[13];
+		me.Mushroom1TopMesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(1.0, 0.2, 0.2, 1.0)
+		);
+		mat4.rotate(
+			me.Mushroom1TopMesh.world, me.Mushroom1TopMesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, 0)
+		);
+		mat4.translate(
+			me.Mushroom1TopMesh.world, me.Mushroom1TopMesh.world,
+			vec4.fromValues(5.8, 1.2, 6.6)
+		);
+
+		var mesh = loadResults.Models.ForestModel.meshes[14];
+		me.Mushroom1TopDotsMesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(1.0, 1.0, 1.0, 1.0)
+		);
+		mat4.rotate(
+			me.Mushroom1TopDotsMesh.world, me.Mushroom1TopDotsMesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, 0)
+		);
+		mat4.translate(
+			me.Mushroom1TopDotsMesh.world, me.Mushroom1TopDotsMesh.world,
+			vec4.fromValues(5.8, 1.2, 6.6)
+		);
+
+		if (!me.Tree1TrunkMesh) {
 			cb('Failed to load tree 1 trunk mesh'); return;
 		}
-		if (!me.Tree1MeshLeafs) {
+		if (!me.Tree1LeafsMesh) {
 			cb('Failed to load tree 1 leafs mesh'); return;
 		}
-		if (!me.Tree2MeshTrunk) {
+		if (!me.Tree2TrunkMesh) {
 			cb('Failed to load some object mesh'); return;
 		}
-		if (!me.Tree2MeshLeafs) {
+		if (!me.Tree2LeafsMesh) {
 			cb('Failed to load some object mesh'); return;
 		}
+		if (!me.Rock1Mesh) {
+			cb('Failed to load some object mesh'); return;
+		}
+		if (!me.Mushroom1BottomMesh) {
+			cb('Failed to load some object mesh'); return;
+		}	
+		if (!me.Mushroom1TopMesh) {
+			cb('Failed to load some object mesh'); return;
+		}	
+		if (!me.Mushroom1TopDotsMesh) {
+			cb('Failed to load some object mesh'); return;
+		}		
 
 		me.Meshes = [
-			me.Tree1MeshTrunk,
-			me.Tree1MeshLeafs,
-			me.Tree2MeshTrunk,
-			me.Tree2MeshLeafs,
+			me.Tree1TrunkMesh,
+			me.Tree1LeafsMesh,
+			me.Tree2TrunkMesh,
+			me.Tree2LeafsMesh,
+			me.Rock1Mesh,
+			me.Mushroom1BottomMesh,
+			me.Mushroom1TopMesh,
+			me.Mushroom1TopDotsMesh,
 		];
 
 
