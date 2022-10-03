@@ -27,29 +27,60 @@ ForestScene.prototype.Load = function (cb) {
 			return;
 		}
 
+		console.log(loadResults);
+
 		//
 		// Create Model objects
 		//
-		var mesh = loadResults.Models.ForestModel.meshes[1];
-		me.Tree1Mesh = new Model(
+		var mesh = loadResults.Models.ForestModel.meshes[0];
+		me.Tree1MeshTrunk = new Model(
 			me.gl,
 			mesh.vertices,
 			[].concat.apply([], mesh.faces),
 			mesh.normals,
 			vec4.fromValues(0.8, 0.8, 1.0, 1.0)
 		);
+		mat4.rotate(
+			me.Tree1MeshTrunk.world, me.Tree1MeshTrunk.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, 0)
+		);
 		mat4.translate(
-			me.Tree1Mesh.world, me.Tree1Mesh.world,
-			vec4.fromValues(2.07919, -0.98559, 1.75740)
+			me.Tree1MeshTrunk.world, me.Tree1MeshTrunk.world,
+			vec4.fromValues(0.0, 0.0, 40)
 		);
 
-		if (!me.Tree1Mesh) {
-			cb('Failed to load monkey mesh'); return;
+		var mesh = loadResults.Models.ForestModel.meshes[1];
+		me.Tree1MeshLeafs = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.8, 0.8, 1.0, 1.0)
+		);
+		mat4.rotate(
+			me.Tree1MeshLeafs.world, me.Tree1MeshLeafs.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, 0)
+		);
+		mat4.translate(
+			me.Tree1MeshLeafs.world, me.Tree1MeshLeafs.world,
+			vec4.fromValues(0.0, 0.0, 40)
+		);
+
+		if (!me.Tree1MeshTrunk) {
+			cb('Failed to load tree 1 trunk mesh'); return;
+		}
+		if (!me.Tree1MeshLeafs) {
+			cb('Failed to load tree 1 leafs mesh'); return;
 		}
 
 		me.Meshes = [
-			me.Tree1Mesh
+			me.Tree1MeshTrunk,
+			me.Tree1MeshLeafs,
 		];
+
+
 
 		//
 		// Create Shaders
@@ -89,7 +120,7 @@ ForestScene.prototype.Load = function (cb) {
 			glMatrix.toRadian(90),
 			me.gl.canvas.clientWidth / me.gl.canvas.clientHeight,
 			0.35,
-			85.0
+			1000.0
 		);
 		cb();
 	});
