@@ -19,7 +19,7 @@ var Model = function (gl, vertices, indices, normals, color) {
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.STATIC_DRAW);
 
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.ibo);
-	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16A rray(indices), gl.STATIC_DRAW);
+	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
 
 	// Clears the buffers so nothing remains bound
 	gl.bindBuffer(gl.ARRAY_BUFFER, null);
