@@ -204,9 +204,9 @@ ForestScene.prototype.Load = function (cb) {
 			cb('Failed to load some object mesh'); return;
 		}
 
-		// Vertices of the floor
-		var floorVertices = 
-		[ // X, Y, Z           R, G, B
+		// Vertices of the mushroom highlights
+		var mushroomHighlightVertices = 
+		[ // X, Y, Z
 			// Top
 			-0.07, 0.07, -0.07,   
 			-0.07, 0.07, 0.07,    
@@ -244,8 +244,8 @@ ForestScene.prototype.Load = function (cb) {
 			0.07, -0.07, -0.07,    
 		];
 
-		// Index array of the floor
-		var floorIndices =
+		// Index array of the mushroom highlights
+		var mushroomHighlightIndices =
 		[
 			// Top
 			0, 1, 2,
@@ -274,24 +274,24 @@ ForestScene.prototype.Load = function (cb) {
 
 		me.MushroomHighlight1Mesh = new Model(
 			me.gl,
-			floorVertices,
-			floorIndices,
+			mushroomHighlightVertices,
+			mushroomHighlightIndices,
 			null,
 			vec4.fromValues(1.0, 1.0, 0.0, 1.0)
 		);
 
 		me.MushroomHighlight2Mesh = new Model(
 			me.gl,
-			floorVertices,
-			floorIndices,
+			mushroomHighlightVertices,
+			mushroomHighlightIndices,
 			null,
 			vec4.fromValues(1.0, 1.0, 0.0, 1.0)
 		);
 
 		me.MushroomHighlight3Mesh = new Model(
 			me.gl,
-			floorVertices,
-			floorIndices,
+			mushroomHighlightVertices,
+			mushroomHighlightIndices,
 			null,
 			vec4.fromValues(1.0, 1.0, 0.0, 1.0)
 		);
@@ -311,6 +311,82 @@ ForestScene.prototype.Load = function (cb) {
 			vec4.fromValues(2.15, -11.5, 1.65)
 		);
 
+		// Vertices of the mushroom highlights
+		var floorVertices = 
+		[ // X, Y, Z
+			// Top
+			-100.0, -100.0, 0.0,   
+			-100.0,  100.0, 0.0,    
+			 100.0, -100.0, 0.0,     
+			 100.0,  100.0, 0.0,    
+
+			// Left
+			-100.0, 100.0,  0.0,    
+			-100.0, 100.0, -1.0,   
+			-100.0, -100.0, -1.0,   
+			-100.0, -100.0,  0.0,    
+
+			// Right
+			100.0, -100.0,  0.0,  
+			100.0, -100.0, -1.0,    
+			100.0, 100.0, -1.0,  
+			100.0, 100.0, 0.0,    
+
+			// Front
+			100.0, 100.0, 0.0,    
+			100.0, 100.0, -1.0,    
+			-100.0, 100.0, -1.0,    
+			-100.0, 100.0,  0.0,    
+
+			// Back
+			-100.0, -100.0,  0.0,    
+			-100.0, -100.0, -1.0,    
+			 100.0, -100.0, -1.0,    
+			 100.0, -100.0,  0.0,    
+
+			// Bottom
+			-100.0, -100.0, -1.0,   
+			-100.0,  100.0, -1.0,    
+			 100.0, -100.0, -1.0,     
+			 100.0,  100.0, -1.0,   
+		];
+
+		// Index array of the mushroom highlights
+		var floorIndices =
+		[
+			// Top
+			0, 1, 2,
+			0, 2, 3,
+
+			// Left
+			5, 4, 6,
+			6, 4, 7,
+
+			// Right
+			8, 9, 10,
+			8, 10, 11,
+
+			// Front
+			13, 12, 14,
+			15, 14, 12,
+
+			// Back
+			16, 17, 18,
+			16, 18, 19,
+
+			// Bottom
+			21, 20, 22,
+			22, 20, 23
+		];
+
+		me.FloorMesh = new Model(
+			me.gl,
+			floorVertices,
+			floorIndices,
+			null,
+			vec4.fromValues(0.6, 0.5, 0.1, 1.0)
+		);
+
 		me.Meshes = [
 			me.Tree1TrunkMesh,
 			me.Tree1LeafsMesh,
@@ -323,6 +399,7 @@ ForestScene.prototype.Load = function (cb) {
 			me.MushroomHighlight1Mesh,
 			me.MushroomHighlight2Mesh,
 			me.MushroomHighlight3Mesh,
+			me.FloorMesh,
 		];
 
 		//
