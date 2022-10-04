@@ -29,9 +29,7 @@ ForestScene.prototype.Load = function (cb) {
 
 		console.log('loadResults', loadResults);
 
-		//
-		// Create Model objects
-		//
+		/* CRIANDO OBJETOS NA CENA */
 
 		// Adicionando tronco da primeira árvore
 		var mesh = loadResults.Models.ForestModel.meshes[0];
@@ -384,7 +382,8 @@ ForestScene.prototype.Load = function (cb) {
 			me.Bush2Mesh.world, me.Bush2Mesh.world,
 			vec4.fromValues(3.2, 0.0, 9.5)
 		);
-
+		
+		/* VERIFICAÇÃO DO CARREGAMENTO DOS OBJETOS */
 		if (!me.Tree1TrunkMesh) {
 			cb('Failed to load tree 1 trunk mesh'); return;
 		}
@@ -392,28 +391,55 @@ ForestScene.prototype.Load = function (cb) {
 			cb('Failed to load tree 1 leafs mesh'); return;
 		}
 		if (!me.Tree2TrunkMesh) {
-			cb('Failed to load some object mesh'); return;
+			cb('Failed to load tree 2 trunk mesh'); return;
 		}
 		if (!me.Tree2LeafsMesh) {
-			cb('Failed to load some object mesh'); return;
+			cb('Failed to load tree 2 leafs mesh'); return;
 		}
 		if (!me.Rock1Mesh) {
-			cb('Failed to load some object mesh'); return;
+			cb('Failed to load rock 1 mesh'); return;
 		}
 		if (!me.Mushroom1BottomMesh) {
-			cb('Failed to load some object mesh'); return;
+			cb('Failed to load bottom of mushroom 1 mesh'); return;
 		}
 		if (!me.Mushroom1TopMesh) {
-			cb('Failed to load some object mesh'); return;
+			cb('Failed to load top of mushroom 1 mesh'); return;
 		}
 		if (!me.Mushroom1TopDotsMesh) {
-			cb('Failed to load some object mesh'); return;
+			cb('Failed to load dots on top of mushroom 1 mesh'); return;
+		}
+		if (!me.Stump30Mesh) {
+			cb('Failed to load stump component 30 mesh'); return;
+		}
+		if (!me.StumpMarrow31Mesh) {
+			cb('Failed to load stump component 31 mesh'); return;
+		}
+		if (!me.Stump32Mesh) {
+			cb('Failed to load stump component 32 mesh'); return;
+		}
+		if (!me.Stump33Mesh) {
+			cb('Failed to load stump component 33 mesh'); return;
+		}
+		if (!me.Stump34Mesh) {
+			cb('Failed to load stump component 34 mesh'); return;
+		}
+		if (!me.StumpMarrow35Mesh) {
+			cb('Failed to load stump component 35 mesh'); return;
+		}
+		if (!me.Stump36Mesh) {
+			cb('Failed to load stump component 36 mesh'); return;
+		}
+		if (!me.Stump37Mesh) {
+			cb('Failed to load stump component 37 mesh'); return;
+		}
+		if (!me.Stump38Mesh) {
+			cb('Failed to load stump component 38 mesh'); return;
 		}
 		if (!me.Bush1Mesh) {
-			cb('Failed to load some object mesh'); return;
+			cb('Failed to load bush 1 mesh'); return;
 		}
 		if (!me.Bush2Mesh) {
-			cb('Failed to load some object mesh'); return;
+			cb('Failed to load bush 2 mesh'); return;
 		}
 
 		// Vertices of the mushroom highlights
@@ -619,6 +645,7 @@ ForestScene.prototype.Load = function (cb) {
 			me.StumpMarrow35Mesh,
 			me.Stump36Mesh,
 			me.Stump37Mesh,
+			me.Stump38Mesh,
 			me.Bush1Mesh,
 			me.Bush2Mesh,
 			me.FloorMesh,
