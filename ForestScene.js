@@ -33,6 +33,7 @@ ForestScene.prototype.Load = function (cb) {
 		// Create Model objects
 		//
 
+		// Adicionando tronco da primeira árvore
 		var mesh = loadResults.Models.ForestModel.meshes[0];
 		me.Tree1TrunkMesh = new Model(
 			me.gl,
@@ -50,7 +51,8 @@ ForestScene.prototype.Load = function (cb) {
 			me.Tree1TrunkMesh.world, me.Tree1TrunkMesh.world,
 			vec4.fromValues(0.0, 0.0, 15)
 		);
-
+		
+		// Adicionando folhagem da primeira árvore
 		var mesh = loadResults.Models.ForestModel.meshes[1];
 		me.Tree1LeafsMesh = new Model(
 			me.gl,
@@ -68,7 +70,8 @@ ForestScene.prototype.Load = function (cb) {
 			me.Tree1LeafsMesh.world, me.Tree1LeafsMesh.world,
 			vec4.fromValues(0.0, 0.0, 15)
 		);
-
+		
+		// Adicionando tronco da segunda árvore
 		var mesh = loadResults.Models.ForestModel.meshes[2];
 		me.Tree2TrunkMesh = new Model(
 			me.gl,
@@ -86,7 +89,8 @@ ForestScene.prototype.Load = function (cb) {
 			me.Tree2TrunkMesh.world, me.Tree2TrunkMesh.world,
 			vec4.fromValues(0.0, 0.0, 15)
 		);
-
+		
+		// Adicionando folhagem da segunda árvore
 		var mesh = loadResults.Models.ForestModel.meshes[3];
 		me.Tree2LeafsMesh = new Model(
 			me.gl,
@@ -105,6 +109,7 @@ ForestScene.prototype.Load = function (cb) {
 			vec4.fromValues(0.0, 0.0, 15)
 		);
 
+		// Adicionando primeira rocha
 		var mesh = loadResults.Models.ForestModel.meshes[4];
 		me.Rock1Mesh = new Model(
 			me.gl,
@@ -123,6 +128,7 @@ ForestScene.prototype.Load = function (cb) {
 			vec4.fromValues(0.0, 0.0, 10)
 		);
 
+		// Adicionando base do cogumelo
 		var mesh = loadResults.Models.ForestModel.meshes[12];
 		me.Mushroom1BottomMesh = new Model(
 			me.gl,
@@ -140,7 +146,8 @@ ForestScene.prototype.Load = function (cb) {
 			me.Mushroom1BottomMesh.world, me.Mushroom1BottomMesh.world,
 			vec4.fromValues(5.8, 1.2, 6.6)
 		);
-
+		
+		// Adicionando topo do cogumelo
 		var mesh = loadResults.Models.ForestModel.meshes[13];
 		me.Mushroom1TopMesh = new Model(
 			me.gl,
@@ -158,7 +165,8 @@ ForestScene.prototype.Load = function (cb) {
 			me.Mushroom1TopMesh.world, me.Mushroom1TopMesh.world,
 			vec4.fromValues(5.8, 1.2, 6.6)
 		);
-
+		
+		// Adicionando pontos brancos no topo do cogumelo
 		var mesh = loadResults.Models.ForestModel.meshes[14];
 		me.Mushroom1TopDotsMesh = new Model(
 			me.gl,
@@ -176,9 +184,8 @@ ForestScene.prototype.Load = function (cb) {
 			me.Mushroom1TopDotsMesh.world, me.Mushroom1TopDotsMesh.world,
 			vec4.fromValues(5.8, 1.2, 6.6)
 		);
-		console.log(me.Mushroom1TopDotsMesh.vertices);
 		
-		// Adicionando o objeto 'Arbusto 1'
+		// Adicionando o primeiro arbusto
 		var mesh = loadResults.Models.ForestModel.meshes[10];
 		me.Bush1Mesh = new Model(
 			me.gl,
@@ -359,7 +366,24 @@ ForestScene.prototype.Load = function (cb) {
 			vec4.fromValues(-7.5, -0.5, 3)
 		);
 
-
+		// Adicionando o segundo arbusto
+		var mesh = loadResults.Models.ForestModel.meshes[11];
+		me.Bush2Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 1.0, 0.1, 1.0)
+		);
+		mat4.rotate(
+			me.Bush2Mesh.world, me.Bush2Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, 0)
+		);
+		mat4.translate(
+			me.Bush2Mesh.world, me.Bush2Mesh.world,
+			vec4.fromValues(3.2, 0.0, 9.5)
+		);
 
 		if (!me.Tree1TrunkMesh) {
 			cb('Failed to load tree 1 trunk mesh'); return;
@@ -386,6 +410,9 @@ ForestScene.prototype.Load = function (cb) {
 			cb('Failed to load some object mesh'); return;
 		}
 		if (!me.Bush1Mesh) {
+			cb('Failed to load some object mesh'); return;
+		}
+		if (!me.Bush2Mesh) {
 			cb('Failed to load some object mesh'); return;
 		}
 
@@ -593,6 +620,7 @@ ForestScene.prototype.Load = function (cb) {
 			me.Stump36Mesh,
 			me.Stump37Mesh,
 			me.Bush1Mesh,
+			me.Bush2Mesh,
 			me.FloorMesh,
 		];
 
