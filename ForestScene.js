@@ -835,6 +835,9 @@ ForestScene.prototype.Begin = function () {
 // Private Methods
 //
 ForestScene.prototype._Update = function (dt) {
+	
+	/* Movimentação dos três cubos giratórios em torno do cogumelo vermelho */
+
 	mat4.rotateZ(
 		this.MushroomHighlight1Mesh.world, this.MushroomHighlight1Mesh.world,
 		dt / 1000 * 2 * Math.PI * 1.0
