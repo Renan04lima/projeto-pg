@@ -12,7 +12,7 @@ varying vec3 fragNormal;
 uniform vec3 ambientLightIntensity;
 uniform DirectionalLight sun;
 uniform sampler2D sampler;
-uniform vec4 meshColor;
+uniform vec4 meshColor; 
 
 void main()
 {

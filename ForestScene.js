@@ -1017,4 +1017,4 @@ ForestScene.prototype._OnKeyUp = function (e) {
 			this.PressedKeys.Down = false;
 			break;
 	}
-};
+}; 
