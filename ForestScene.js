@@ -27,7 +27,7 @@ ForestScene.prototype.Load = function (cb) {
 			return;
 		}
 
-		console.log(loadResults);
+		console.log('loadResults', loadResults);
 
 		//
 		// Create Model objects
@@ -176,8 +176,171 @@ ForestScene.prototype.Load = function (cb) {
 			me.Mushroom1TopDotsMesh.world, me.Mushroom1TopDotsMesh.world,
 			vec4.fromValues(5.8, 1.2, 6.6)
 		);
-
 		console.log(me.Mushroom1TopDotsMesh.vertices);
+
+		var mesh = loadResults.Models.ForestModel.meshes[30];
+		me.Stump30Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 0.2, 0.0, 1.0)
+		);
+		mat4.rotate(
+			me.Stump30Mesh.world, me.Stump30Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0.1, 0)
+		);
+		mat4.translate(
+			me.Stump30Mesh.world, me.Stump30Mesh.world,
+			vec4.fromValues(-7.5, -0.5, 3)
+		);
+
+		var mesh = loadResults.Models.ForestModel.meshes[31];
+		me.StumpMarrow31Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.9, 0.8, 0.7, 1.0)
+		);
+		mat4.rotate(
+			me.StumpMarrow31Mesh.world, me.StumpMarrow31Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0.1, 0)
+		);
+		mat4.translate(
+			me.StumpMarrow31Mesh.world, me.StumpMarrow31Mesh.world,
+			vec4.fromValues(-7.5, -0.5, 3)
+		);
+
+		var mesh = loadResults.Models.ForestModel.meshes[32];
+		me.Stump32Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 0.2, 0.0, 1.0)
+		);
+		mat4.rotate(
+			me.Stump32Mesh.world, me.Stump32Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0.1, 0)
+		);
+		mat4.translate(
+			me.Stump32Mesh.world, me.Stump32Mesh.world,
+			vec4.fromValues(-7.5, -0.5, 3)
+		);
+
+		var mesh = loadResults.Models.ForestModel.meshes[33];
+		me.Stump33Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 0.2, 0.0, 1.0)
+		);
+		mat4.rotate(
+			me.Stump33Mesh.world, me.Stump33Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0.1, 0)
+		);
+		mat4.translate(
+			me.Stump33Mesh.world, me.Stump33Mesh.world,
+			vec4.fromValues(-7.5, -0.5, 3)
+		);
+
+		var mesh = loadResults.Models.ForestModel.meshes[34];
+		me.Stump34Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 0.2, 0.0, 1.0)
+		);
+		mat4.rotate(
+			me.Stump34Mesh.world, me.Stump34Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0.1, 0)
+		);
+		mat4.translate(
+			me.Stump34Mesh.world, me.Stump34Mesh.world,
+			vec4.fromValues(-7.5, -0.5, 3)
+		);
+
+		var mesh = loadResults.Models.ForestModel.meshes[35];
+		me.StumpMarrow35Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.9, 0.8, 0.7, 1.0)
+		);
+		mat4.rotate(
+			me.StumpMarrow35Mesh.world, me.StumpMarrow35Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0.1, 0)
+		);
+		mat4.translate(
+			me.StumpMarrow35Mesh.world, me.StumpMarrow35Mesh.world,
+			vec4.fromValues(-7.5, -0.5, 3)
+		);
+
+		var mesh = loadResults.Models.ForestModel.meshes[36];
+		me.Stump36Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 0.2, 0.0, 1.0)
+		);
+		mat4.rotate(
+			me.Stump36Mesh.world, me.Stump36Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0.1, 0)
+		);
+		mat4.translate(
+			me.Stump36Mesh.world, me.Stump36Mesh.world,
+			vec4.fromValues(-7.5, -0.5, 3)
+		);
+
+		var mesh = loadResults.Models.ForestModel.meshes[37];
+		me.Stump37Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 0.2, 0.0, 1.0)
+		);
+		mat4.rotate(
+			me.Stump37Mesh.world, me.Stump37Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0.1, 0)
+		);
+		mat4.translate(
+			me.Stump37Mesh.world, me.Stump37Mesh.world,
+			vec4.fromValues(-7.5, -0.5, 3)
+		);
+
+		var mesh = loadResults.Models.ForestModel.meshes[38];
+		me.Stump38Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 0.2, 0.0, 1.0)
+		);
+		mat4.rotate(
+			me.Stump38Mesh.world, me.Stump38Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0.1, 0)
+		);
+		mat4.translate(
+			me.Stump38Mesh.world, me.Stump38Mesh.world,
+			vec4.fromValues(-7.5, -0.5, 3)
+		);
+
+
 
 		if (!me.Tree1TrunkMesh) {
 			cb('Failed to load tree 1 trunk mesh'); return;
@@ -196,81 +359,86 @@ ForestScene.prototype.Load = function (cb) {
 		}
 		if (!me.Mushroom1BottomMesh) {
 			cb('Failed to load some object mesh'); return;
-		}	
+		}
 		if (!me.Mushroom1TopMesh) {
 			cb('Failed to load some object mesh'); return;
-		}	
+		}
 		if (!me.Mushroom1TopDotsMesh) {
 			cb('Failed to load some object mesh'); return;
 		}
 
+		if (!me.Stump30Mesh) {
+			cb('Failed to load some object mesh'); return;
+		}
+
+
 		// Vertices of the floor
-		var floorVertices = 
-		[ // X, Y, Z           R, G, B
-			// Top
-			-0.07, 0.07, -0.07,   
-			-0.07, 0.07, 0.07,    
-			0.07, 0.07, 0.07,     
-			0.07, 0.07, -0.07,    
+		var floorVertices =
+			[ // X, Y, Z           R, G, B
+				// Top
+				-0.07, 0.07, -0.07,
+				-0.07, 0.07, 0.07,
+				0.07, 0.07, 0.07,
+				0.07, 0.07, -0.07,
 
-			// Left
-			-0.07, 0.07, 0.07,    
-			-0.07, -0.07, 0.07,   
-			-0.07, -0.07, -0.07,  
-			-0.07, 0.07, -0.07,   
+				// Left
+				-0.07, 0.07, 0.07,
+				-0.07, -0.07, 0.07,
+				-0.07, -0.07, -0.07,
+				-0.07, 0.07, -0.07,
 
-			// Right
-			0.07, 0.07, 0.07,    
-			0.07, -0.07, 0.07,   
-			0.07, -0.07, -0.07,  
-			0.07, 0.07, -0.07,   
+				// Right
+				0.07, 0.07, 0.07,
+				0.07, -0.07, 0.07,
+				0.07, -0.07, -0.07,
+				0.07, 0.07, -0.07,
 
-			// Front
-			0.07, 0.07, 0.07,    
-			0.07, -0.07, 0.07,    
-			-0.07, -0.07, 0.07,    
-			-0.07, 0.07, 0.07,    
+				// Front
+				0.07, 0.07, 0.07,
+				0.07, -0.07, 0.07,
+				-0.07, -0.07, 0.07,
+				-0.07, 0.07, 0.07,
 
-			// Back
-			0.07, 0.07, -0.07,    
-			0.07, -0.07, -0.07,    
-			-0.07, -0.07, -0.07,    
-			-0.07, 0.07, -0.07,    
+				// Back
+				0.07, 0.07, -0.07,
+				0.07, -0.07, -0.07,
+				-0.07, -0.07, -0.07,
+				-0.07, 0.07, -0.07,
 
-			// Bottom
-			-0.07, -0.07, -0.07,   
-			-0.07, -0.07, 0.07,    
-			0.07, -0.07, 0.07,     
-			0.07, -0.07, -0.07,    
-		];
+				// Bottom
+				-0.07, -0.07, -0.07,
+				-0.07, -0.07, 0.07,
+				0.07, -0.07, 0.07,
+				0.07, -0.07, -0.07,
+			];
 
 		// Index array of the floor
 		var floorIndices =
-		[
-			// Top
-			0, 1, 2,
-			0, 2, 3,
+			[
+				// Top
+				0, 1, 2,
+				0, 2, 3,
 
-			// Left
-			5, 4, 6,
-			6, 4, 7,
+				// Left
+				5, 4, 6,
+				6, 4, 7,
 
-			// Right
-			8, 9, 10,
-			8, 10, 11,
+				// Right
+				8, 9, 10,
+				8, 10, 11,
 
-			// Front
-			13, 12, 14,
-			15, 14, 12,
+				// Front
+				13, 12, 14,
+				15, 14, 12,
 
-			// Back
-			16, 17, 18,
-			16, 18, 19,
+				// Back
+				16, 17, 18,
+				16, 18, 19,
 
-			// Bottom
-			21, 20, 22,
-			22, 20, 23
-		];
+				// Bottom
+				21, 20, 22,
+				22, 20, 23
+			];
 
 		me.MushroomHighlight1Mesh = new Model(
 			me.gl,
@@ -323,6 +491,14 @@ ForestScene.prototype.Load = function (cb) {
 			me.MushroomHighlight1Mesh,
 			me.MushroomHighlight2Mesh,
 			me.MushroomHighlight3Mesh,
+			me.Stump30Mesh,
+			me.StumpMarrow31Mesh,
+			me.Stump32Mesh,
+			me.Stump33Mesh,
+			me.Stump34Mesh,
+			me.StumpMarrow35Mesh,
+			me.Stump36Mesh,
+			me.Stump37Mesh,
 		];
 
 		//
@@ -399,7 +575,7 @@ ForestScene.prototype.Begin = function () {
 	AddEvent(window, 'resize', this.__ResizeWindowListener);
 	AddEvent(window, 'keydown', this.__KeyDownWindowListener);
 	AddEvent(window, 'keyup', this.__KeyUpWindowListener);
-	
+
 	// Render Loop
 	var previousFrame = performance.now();
 	var dt = 0;
@@ -543,7 +719,7 @@ ForestScene.prototype._OnResizeWindow = function () {
 };
 
 ForestScene.prototype._OnKeyDown = function (e) {
-	switch(e.code) {
+	switch (e.code) {
 		case 'KeyW':
 			this.PressedKeys.Forward = true;
 			break;
@@ -572,7 +748,7 @@ ForestScene.prototype._OnKeyDown = function (e) {
 };
 
 ForestScene.prototype._OnKeyUp = function (e) {
-	switch(e.code) {
+	switch (e.code) {
 		case 'KeyW':
 			this.PressedKeys.Forward = false;
 			break;
