@@ -710,7 +710,7 @@ ForestScene.prototype.Load = function (cb) {
 			floorVertices,
 			floorIndices,
 			null,
-			vec4.fromValues(0.6, 0.5, 0.1, 1.0)
+			vec4.fromValues(0.221, 0.690, 0.104, 1.0)
 		);
 
 		me.Meshes = [
@@ -762,6 +762,8 @@ ForestScene.prototype.Load = function (cb) {
 		};
 		me.demoProgram.attribs = {
 			vertPosition: me.gl.getAttribLocation(me.demoProgram, 'vertPosition'),
+			vertNormal: me.gl.getAttribLocation(me.demoProgram, 'vertNormal'),
+			vertTexCoord: me.gl.getAttribLocation(me.demoProgram, 'vertTexCoord'),
 		};
 
 
@@ -769,7 +771,7 @@ ForestScene.prototype.Load = function (cb) {
 		// Logical Values
 		//
 		me.camera = new Camera(
-			vec3.fromValues(4.0, -7.0, 1.85),
+			vec3.fromValues(3.7, -7.0, 1.5),
 			vec3.fromValues(1.65, -11.0, 1.65),
 			vec3.fromValues(0, 0, 1)
 		);
@@ -834,6 +836,7 @@ ForestScene.prototype.Begin = function () {
 //
 // Private Methods
 //
+
 ForestScene.prototype._Update = function (dt) {
 	
 	/* Movimentação dos três cubos giratórios em torno do cogumelo vermelho */
@@ -889,12 +892,20 @@ ForestScene.prototype._Render = function () {
 
 	gl.viewport(0, 0, gl.canvas.clientWidth, gl.canvas.clientHeight);
 
-	gl.clearColor(0.7, 0.7, 0.7, 1);
+	gl.clearColor(0.635, 0.834, 0.920, 1);
 	gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
 
 	gl.useProgram(this.demoProgram);
 	gl.uniformMatrix4fv(this.demoProgram.uniforms.mProj, gl.FALSE, this.projMatrix);
 	gl.uniformMatrix4fv(this.demoProgram.uniforms.mView, gl.FALSE, this.viewMatrix);
+
+	var ambientUniformLocation = gl.getUniformLocation(this.demoProgram, 'ambientLightIntensity');
+	var sunlightDirUniformLocation = gl.getUniformLocation(this.demoProgram, 'sun.direction');
+	var sunlightIntUniformLocation = gl.getUniformLocation(this.demoProgram, 'sun.color');
+
+	gl.uniform3f(ambientUniformLocation, 0.2, 0.2, 0.2);
+	gl.uniform3f(sunlightDirUniformLocation, -3.0, 17.0, 4.0);
+	gl.uniform3f(sunlightIntUniformLocation, 0.9, 0.9, 0.9);
 
 	// Draw meshes
 	for (var i = 0; i < this.Meshes.length; i++) {
@@ -909,7 +920,7 @@ ForestScene.prototype._Render = function () {
 			this.Meshes[i].color
 		);
 
-		// Set attributes
+		// Buffer de vértice
 		gl.bindBuffer(gl.ARRAY_BUFFER, this.Meshes[i].vbo);
 		gl.vertexAttribPointer(
 			this.demoProgram.attribs.vertPosition,
@@ -917,6 +928,17 @@ ForestScene.prototype._Render = function () {
 			0, 0
 		);
 		gl.enableVertexAttribArray(this.demoProgram.attribs.vertPosition);
+		
+		// Buffer de normais
+		gl.bindBuffer(gl.ARRAY_BUFFER, this.Meshes[i].nbo);
+		gl.vertexAttribPointer(
+			this.demoProgram.attribs.vertNormal,
+			3, gl.FLOAT,
+			gl.TRUE,
+			0, 0
+		);
+		gl.enableVertexAttribArray(this.demoProgram.attribs.vertNormal);
+
 		gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
 		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.Meshes[i].ibo);
