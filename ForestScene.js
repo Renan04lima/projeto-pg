@@ -399,7 +399,26 @@ ForestScene.prototype.Load = function (cb) {
 		);
 		mat4.translate(
 			me.Grass1Mesh.world, me.Grass1Mesh.world,
-			vec4.fromValues(6, 0.6, 6.6)
+			vec4.fromValues(6, 0.64, 6.6)
+		);
+
+		// Adicionando a segunda grama
+		var mesh = loadResults.Models.ForestModel.meshes[9];
+		me.Grass2Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 1.0, 0.1, 1.0)
+		);
+		mat4.rotate(
+			me.Grass2Mesh.world, me.Grass2Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, -0.2)
+		);
+		mat4.translate(
+			me.Grass2Mesh.world, me.Grass2Mesh.world,
+			vec4.fromValues(4.7, 0.64, 6.3)
 		);
 		
 		/* VERIFICAÇÃO DO CARREGAMENTO DOS OBJETOS */
@@ -462,6 +481,9 @@ ForestScene.prototype.Load = function (cb) {
 		}
 		if (!me.Grass1Mesh) {
 			cb('Failed to load grass 1 mesh'); return;
+		}
+		if (!me.Grass2Mesh) {
+			cb('Failed to load grass 2 mesh'); return;
 		}
 
 		// Vertices of the mushroom highlights
@@ -671,6 +693,7 @@ ForestScene.prototype.Load = function (cb) {
 			me.Bush1Mesh,
 			me.Bush2Mesh,
 			me.Grass1Mesh,
+			me.Grass2Mesh,
 			me.FloorMesh,
 		];
 
