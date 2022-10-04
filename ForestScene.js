@@ -178,6 +178,25 @@ ForestScene.prototype.Load = function (cb) {
 		);
 
 		console.log(me.Mushroom1TopDotsMesh.vertices);
+		
+		// Adicionando o objeto 'Arbusto 1'
+		var mesh = loadResults.Models.ForestModel.meshes[10];
+		me.Bush1Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 1.0, 0.1, 1.0)
+		);
+		mat4.rotate(
+			me.Bush1Mesh.world, me.Bush1Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, 0)
+		);
+		mat4.translate(
+			me.Bush1Mesh.world, me.Bush1Mesh.world,
+			vec4.fromValues(-3.1, 0.0, 7.4)
+		);
 
 		if (!me.Tree1TrunkMesh) {
 			cb('Failed to load tree 1 trunk mesh'); return;
@@ -201,6 +220,9 @@ ForestScene.prototype.Load = function (cb) {
 			cb('Failed to load some object mesh'); return;
 		}	
 		if (!me.Mushroom1TopDotsMesh) {
+			cb('Failed to load some object mesh'); return;
+		}
+		if (!me.Bush1Mesh) {
 			cb('Failed to load some object mesh'); return;
 		}
 
@@ -399,6 +421,7 @@ ForestScene.prototype.Load = function (cb) {
 			me.MushroomHighlight1Mesh,
 			me.MushroomHighlight2Mesh,
 			me.MushroomHighlight3Mesh,
+			me.Bush1Mesh,
 			me.FloorMesh,
 		];
 
