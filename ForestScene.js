@@ -177,6 +177,25 @@ ForestScene.prototype.Load = function (cb) {
 			vec4.fromValues(5.8, 1.2, 6.6)
 		);
 		console.log(me.Mushroom1TopDotsMesh.vertices);
+		
+		// Adicionando o objeto 'Arbusto 1'
+		var mesh = loadResults.Models.ForestModel.meshes[10];
+		me.Bush1Mesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.5, 1.0, 0.1, 1.0)
+		);
+		mat4.rotate(
+			me.Bush1Mesh.world, me.Bush1Mesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, 0)
+		);
+		mat4.translate(
+			me.Bush1Mesh.world, me.Bush1Mesh.world,
+			vec4.fromValues(-3.1, 0.0, 7.4)
+		);
 
 		var mesh = loadResults.Models.ForestModel.meshes[30];
 		me.Stump30Mesh = new Model(
@@ -366,100 +385,98 @@ ForestScene.prototype.Load = function (cb) {
 		if (!me.Mushroom1TopDotsMesh) {
 			cb('Failed to load some object mesh'); return;
 		}
-
-		if (!me.Stump30Mesh) {
+		if (!me.Bush1Mesh) {
 			cb('Failed to load some object mesh'); return;
 		}
 
+		// Vertices of the mushroom highlights
+		var mushroomHighlightVertices = 
+		[ // X, Y, Z
+			// Top
+			-0.07, 0.07, -0.07,   
+			-0.07, 0.07, 0.07,    
+			0.07, 0.07, 0.07,     
+			0.07, 0.07, -0.07,    
 
-		// Vertices of the floor
-		var floorVertices =
-			[ // X, Y, Z           R, G, B
-				// Top
-				-0.07, 0.07, -0.07,
-				-0.07, 0.07, 0.07,
-				0.07, 0.07, 0.07,
-				0.07, 0.07, -0.07,
+			// Left
+			-0.07, 0.07, 0.07,    
+			-0.07, -0.07, 0.07,   
+			-0.07, -0.07, -0.07,  
+			-0.07, 0.07, -0.07,   
 
-				// Left
-				-0.07, 0.07, 0.07,
-				-0.07, -0.07, 0.07,
-				-0.07, -0.07, -0.07,
-				-0.07, 0.07, -0.07,
+			// Right
+			0.07, 0.07, 0.07,    
+			0.07, -0.07, 0.07,   
+			0.07, -0.07, -0.07,  
+			0.07, 0.07, -0.07,   
 
-				// Right
-				0.07, 0.07, 0.07,
-				0.07, -0.07, 0.07,
-				0.07, -0.07, -0.07,
-				0.07, 0.07, -0.07,
+			// Front
+			0.07, 0.07, 0.07,    
+			0.07, -0.07, 0.07,    
+			-0.07, -0.07, 0.07,    
+			-0.07, 0.07, 0.07,    
 
-				// Front
-				0.07, 0.07, 0.07,
-				0.07, -0.07, 0.07,
-				-0.07, -0.07, 0.07,
-				-0.07, 0.07, 0.07,
+			// Back
+			0.07, 0.07, -0.07,    
+			0.07, -0.07, -0.07,    
+			-0.07, -0.07, -0.07,    
+			-0.07, 0.07, -0.07,    
 
-				// Back
-				0.07, 0.07, -0.07,
-				0.07, -0.07, -0.07,
-				-0.07, -0.07, -0.07,
-				-0.07, 0.07, -0.07,
+			// Bottom
+			-0.07, -0.07, -0.07,   
+			-0.07, -0.07, 0.07,    
+			0.07, -0.07, 0.07,     
+			0.07, -0.07, -0.07,    
+		];
 
-				// Bottom
-				-0.07, -0.07, -0.07,
-				-0.07, -0.07, 0.07,
-				0.07, -0.07, 0.07,
-				0.07, -0.07, -0.07,
-			];
+		// Index array of the mushroom highlights
+		var mushroomHighlightIndices =
+		[
+			// Top
+			0, 1, 2,
+			0, 2, 3,
 
-		// Index array of the floor
-		var floorIndices =
-			[
-				// Top
-				0, 1, 2,
-				0, 2, 3,
+			// Left
+			5, 4, 6,
+			6, 4, 7,
 
-				// Left
-				5, 4, 6,
-				6, 4, 7,
+			// Right
+			8, 9, 10,
+			8, 10, 11,
 
-				// Right
-				8, 9, 10,
-				8, 10, 11,
+			// Front
+			13, 12, 14,
+			15, 14, 12,
 
-				// Front
-				13, 12, 14,
-				15, 14, 12,
+			// Back
+			16, 17, 18,
+			16, 18, 19,
 
-				// Back
-				16, 17, 18,
-				16, 18, 19,
-
-				// Bottom
-				21, 20, 22,
-				22, 20, 23
-			];
+			// Bottom
+			21, 20, 22,
+			22, 20, 23
+		];
 
 		me.MushroomHighlight1Mesh = new Model(
 			me.gl,
-			floorVertices,
-			floorIndices,
+			mushroomHighlightVertices,
+			mushroomHighlightIndices,
 			null,
 			vec4.fromValues(1.0, 1.0, 0.0, 1.0)
 		);
 
 		me.MushroomHighlight2Mesh = new Model(
 			me.gl,
-			floorVertices,
-			floorIndices,
+			mushroomHighlightVertices,
+			mushroomHighlightIndices,
 			null,
 			vec4.fromValues(1.0, 1.0, 0.0, 1.0)
 		);
 
 		me.MushroomHighlight3Mesh = new Model(
 			me.gl,
-			floorVertices,
-			floorIndices,
+			mushroomHighlightVertices,
+			mushroomHighlightIndices,
 			null,
 			vec4.fromValues(1.0, 1.0, 0.0, 1.0)
 		);
@@ -477,6 +494,82 @@ ForestScene.prototype.Load = function (cb) {
 		mat4.translate(
 			me.MushroomHighlight3Mesh.world, me.MushroomHighlight3Mesh.world,
 			vec4.fromValues(2.15, -11.5, 1.65)
+		);
+
+		// Vertices of the mushroom highlights
+		var floorVertices = 
+		[ // X, Y, Z
+			// Top
+			-100.0, -100.0, 0.0,   
+			-100.0,  100.0, 0.0,    
+			 100.0, -100.0, 0.0,     
+			 100.0,  100.0, 0.0,    
+
+			// Left
+			-100.0, 100.0,  0.0,    
+			-100.0, 100.0, -1.0,   
+			-100.0, -100.0, -1.0,   
+			-100.0, -100.0,  0.0,    
+
+			// Right
+			100.0, -100.0,  0.0,  
+			100.0, -100.0, -1.0,    
+			100.0, 100.0, -1.0,  
+			100.0, 100.0, 0.0,    
+
+			// Front
+			100.0, 100.0, 0.0,    
+			100.0, 100.0, -1.0,    
+			-100.0, 100.0, -1.0,    
+			-100.0, 100.0,  0.0,    
+
+			// Back
+			-100.0, -100.0,  0.0,    
+			-100.0, -100.0, -1.0,    
+			 100.0, -100.0, -1.0,    
+			 100.0, -100.0,  0.0,    
+
+			// Bottom
+			-100.0, -100.0, -1.0,   
+			-100.0,  100.0, -1.0,    
+			 100.0, -100.0, -1.0,     
+			 100.0,  100.0, -1.0,   
+		];
+
+		// Index array of the mushroom highlights
+		var floorIndices =
+		[
+			// Top
+			0, 1, 2,
+			0, 2, 3,
+
+			// Left
+			5, 4, 6,
+			6, 4, 7,
+
+			// Right
+			8, 9, 10,
+			8, 10, 11,
+
+			// Front
+			13, 12, 14,
+			15, 14, 12,
+
+			// Back
+			16, 17, 18,
+			16, 18, 19,
+
+			// Bottom
+			21, 20, 22,
+			22, 20, 23
+		];
+
+		me.FloorMesh = new Model(
+			me.gl,
+			floorVertices,
+			floorIndices,
+			null,
+			vec4.fromValues(0.6, 0.5, 0.1, 1.0)
 		);
 
 		me.Meshes = [
@@ -499,6 +592,8 @@ ForestScene.prototype.Load = function (cb) {
 			me.StumpMarrow35Mesh,
 			me.Stump36Mesh,
 			me.Stump37Mesh,
+			me.Bush1Mesh,
+			me.FloorMesh,
 		];
 
 		//
@@ -552,13 +647,9 @@ ForestScene.prototype.Load = function (cb) {
 		Left: false,
 		Forward: false,
 		Back: false,
-
-		RotLeft: false,
-		RotRight: false,
 	};
 
 	me.MoveForwardSpeed = 3.5;
-	me.RotateSpeed = 1.5;
 	me.textureSize = getParameterByName('texSize') || 512;
 };
 
@@ -634,14 +725,6 @@ ForestScene.prototype._Update = function (dt) {
 
 	if (this.PressedKeys.Down && !this.PressedKeys.Up) {
 		this.camera.moveUp(-dt / 1000 * this.MoveForwardSpeed);
-	}
-
-	if (this.PressedKeys.RotRight && !this.PressedKeys.RotLeft) {
-		this.camera.rotateRight(-dt / 1000 * this.RotateSpeed);
-	}
-
-	if (this.PressedKeys.RotLeft && !this.PressedKeys.RotRight) {
-		this.camera.rotateRight(dt / 1000 * this.RotateSpeed);
 	}
 
 	this.camera.GetViewMatrix(this.viewMatrix);
@@ -738,12 +821,6 @@ ForestScene.prototype._OnKeyDown = function (e) {
 		case 'ArrowDown':
 			this.PressedKeys.Down = true;
 			break;
-		case 'ArrowRight':
-			this.PressedKeys.RotRight = true;
-			break;
-		case 'ArrowLeft':
-			this.PressedKeys.RotLeft = true;
-			break;
 	}
 };
 
@@ -766,12 +843,6 @@ ForestScene.prototype._OnKeyUp = function (e) {
 			break;
 		case 'ArrowDown':
 			this.PressedKeys.Down = false;
-			break;
-		case 'ArrowRight':
-			this.PressedKeys.RotRight = false;
-			break;
-		case 'ArrowLeft':
-			this.PressedKeys.RotLeft = false;
 			break;
 	}
 };

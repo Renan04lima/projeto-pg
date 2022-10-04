@@ -92,13 +92,6 @@ Camera.prototype.GetViewMatrix = function (out) {
 	return out;
 };
 
-Camera.prototype.rotateRight = function (rad) {
-	var rightMatrix = mat4.create();
-	mat4.rotate(rightMatrix, rightMatrix, rad, vec3.fromValues(0, 0, 1));
-	vec3.transformMat4(this.forward, this.forward, rightMatrix);
-	this._realign();
-};
-
 Camera.prototype._realign = function() {
 	vec3.cross(this.right, this.forward, this.up);
 	vec3.cross(this.up, this.right, this.forward);
