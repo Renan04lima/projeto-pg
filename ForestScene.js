@@ -126,7 +126,7 @@ ForestScene.prototype.Load = function (cb) {
 			vec4.fromValues(0.0, 0.0, 10)
 		);
 
-		// Adicionando base do cogumelo
+		// Adicionando base do primeiro cogumelo
 		var mesh = loadResults.Models.ForestModel.meshes[12];
 		me.Mushroom1BottomMesh = new Model(
 			me.gl,
@@ -145,7 +145,7 @@ ForestScene.prototype.Load = function (cb) {
 			vec4.fromValues(5.8, 1.2, 6.6)
 		);
 		
-		// Adicionando topo do cogumelo
+		// Adicionando topo do primeiro cogumelo
 		var mesh = loadResults.Models.ForestModel.meshes[13];
 		me.Mushroom1TopMesh = new Model(
 			me.gl,
@@ -164,7 +164,7 @@ ForestScene.prototype.Load = function (cb) {
 			vec4.fromValues(5.8, 1.2, 6.6)
 		);
 		
-		// Adicionando pontos brancos no topo do cogumelo
+		// Adicionando pontos brancos no topo do primeiro cogumelo
 		var mesh = loadResults.Models.ForestModel.meshes[14];
 		me.Mushroom1TopDotsMesh = new Model(
 			me.gl,
@@ -181,6 +181,44 @@ ForestScene.prototype.Load = function (cb) {
 		mat4.translate(
 			me.Mushroom1TopDotsMesh.world, me.Mushroom1TopDotsMesh.world,
 			vec4.fromValues(5.8, 1.2, 6.6)
+		);
+
+		// Adicionando a base do segundo cogumelo
+		var mesh = loadResults.Models.ForestModel.meshes[6];
+		me.Mushroom2BottomMesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.960, 0.864, 0.547, 1.0)
+		);
+		mat4.rotate(
+			me.Mushroom2BottomMesh.world, me.Mushroom2BottomMesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, -0.2)
+		);
+		mat4.translate(
+			me.Mushroom2BottomMesh.world, me.Mushroom2BottomMesh.world,
+			vec4.fromValues(7.8, 0.64, 6.7)
+		);
+
+		// Adicionando o topo do segundo cogumelo
+		var mesh = loadResults.Models.ForestModel.meshes[7];
+		me.Mushroom2TopMesh = new Model(
+			me.gl,
+			mesh.vertices,
+			[].concat.apply([], mesh.faces),
+			mesh.normals,
+			vec4.fromValues(0.920, 0.609, 0.202, 1.0)
+		);
+		mat4.rotate(
+			me.Mushroom2TopMesh.world, me.Mushroom2TopMesh.world,
+			glMatrix.toRadian(90.0),
+			vec3.fromValues(1, 0, -0.2)
+		);
+		mat4.translate(
+			me.Mushroom2TopMesh.world, me.Mushroom2TopMesh.world,
+			vec4.fromValues(7.8, 0.64, 6.7)
 		);
 		
 		// Adicionando o primeiro arbusto
@@ -446,6 +484,12 @@ ForestScene.prototype.Load = function (cb) {
 		if (!me.Mushroom1TopDotsMesh) {
 			cb('Failed to load dots on top of mushroom 1 mesh'); return;
 		}
+		if (!me.Mushroom2BottomMesh) {
+			cb('Failed to load bottom of mushroom 2 mesh'); return;
+		}
+		if (!me.Mushroom2TopMesh) {
+			cb('Failed to load top of mushroom 2 mesh'); return;
+		}
 		if (!me.Stump30Mesh) {
 			cb('Failed to load stump component 30 mesh'); return;
 		}
@@ -681,6 +725,8 @@ ForestScene.prototype.Load = function (cb) {
 			me.MushroomHighlight1Mesh,
 			me.MushroomHighlight2Mesh,
 			me.MushroomHighlight3Mesh,
+			me.Mushroom2BottomMesh,
+			me.Mushroom2TopMesh,
 			me.Stump30Mesh,
 			me.StumpMarrow31Mesh,
 			me.Stump32Mesh,
